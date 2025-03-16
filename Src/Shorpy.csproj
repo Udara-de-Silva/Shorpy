@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>Shorpy</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>Udara de Silva</Authors>
+    <Description>Shorpy is a powerful and easy-to-use .NET library that provides seamless dynamic Pagination, Searching, and Sorting for applications using Entity Framework Core, ASP.NET Core WebAPI, and written in C#. It aims to simplify data handling and improve performance by offering efficient querying mechanisms.</Description>
+    <PackageTags>pagination;sorting;searching</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.4" />
+  </ItemGroup>
+
+</Project>
