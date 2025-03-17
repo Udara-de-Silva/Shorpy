@@ -1,4 +1,5 @@
-# Shorpy
+# Shorpy ![SHORPY CI](https://github.com/Udara-de-Silva/Shorpy/actions/workflows/shorpy-ci.yml/badge.svg)
+
 
 Shorpy is a powerful and easy-to-use .NET library that provides seamless dynamic Pagination, Searching, and Sorting for applications using **Entity Framework Core**, **ASP.NET Core WebAPI**, and written in **C#**. It aims to simplify data handling and improve performance by offering efficient querying mechanisms.
 
