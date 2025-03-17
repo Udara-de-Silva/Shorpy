@@ -44,9 +44,6 @@ Your SnSAble for the `Employee` entity will look like this.
 ```csharp
 using System.Linq.Expressions;
 using Shorpy.Interfaces;
-using Shorpy.Tests.Entities;
-
-namespace Shorpy.Tests.SnSAbles;
 
 using type = Expression<Func<Employee, object>>;
 public class SnSEmployee: ISnSAble
@@ -60,9 +57,6 @@ Your Includable for the `Employee` entity will look like this.
 ```csharp
 using System.Linq.Expressions;
 using Shorpy.Interfaces;
-using Shorpy.Tests.Entities;
-
-namespace Shorpy.Tests.SnSAbles;
 
 using type = Expression<Func<Employee, object>>;
 public class IncEmployee: IIncludable
