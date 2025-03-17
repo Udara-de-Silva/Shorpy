@@ -4,8 +4,8 @@ using Shorpy.Tests.Entities;
 
 namespace Shorpy.Tests.SnSAbles;
 
-using type = Expression<Func<Employee, object>>;
+using incType = Expression<Func<Employee, object>>;
 public class SnSEmployee: ISnSAble
 {
-    public static readonly type Name = e=>e.Name;
+    public static readonly incType Name = e=>e.Name;
 }

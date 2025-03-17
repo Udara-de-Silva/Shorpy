@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/Udara-de-Silva/Shorpy/compare/v1.0.0...v1.0.1) (2025-03-17)
+
+
+### Bug Fixes
+
+* fixed target frameworks of both Tests and Shorpy ([5dd3ea6](https://github.com/Udara-de-Silva/Shorpy/commit/5dd3ea6934d8beb48a22d534284c0930453ffa5a))
+
 # 1.0.0 (2025-03-17)
 
 

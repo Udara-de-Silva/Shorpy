@@ -4,8 +4,8 @@ using Shorpy.Tests.Entities;
 
 namespace Shorpy.Tests.SnSAbles;
 
-using type = Expression<Func<Employee, object>>;
+using incType = Expression<Func<Employee, object>>;
 public class IncEmployee: IIncludable
 {
-    public static readonly type Department = e=>e.DepartmentNavigation;
+    public static readonly incType Department = e=>e.DepartmentNavigation;
 }
