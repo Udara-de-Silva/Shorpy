@@ -6,7 +6,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>Shorpy</PackageId>
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Authors>Udara de Silva</Authors>
     <Company>The Software Firm</Company>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
