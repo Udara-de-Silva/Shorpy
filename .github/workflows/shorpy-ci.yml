@@ -23,11 +23,11 @@ jobs:
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
 
-      - name: Restore dependencies
-        run: dotnet restore
+      - name: Restore dependencies for -f ${{ matrix.dotnet-version }}
+        run: dotnet restore -f ${{ matrix.dotnet-version }}
 
-      - name: Build the solution
-        run: dotnet build --no-restore --configuration Release
+      - name: Build the solution for -f ${{ matrix.dotnet-version }}
+        run: dotnet build -f ${{ matrix.dotnet-version }} --no-restore --configuration Release
 
-      - name: Run tests
-        run: dotnet test --no-build --configuration Release
+      - name: Run tests for -f ${{ matrix.dotnet-version }}
+        run: dotnet test -f ${{ matrix.dotnet-version }} --no-build --configuration Release
