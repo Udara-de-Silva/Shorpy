@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/Udara-de-Silva/Shorpy/compare/v1.0.1...v1.0.2) (2025-03-17)
+
+
+### Bug Fixes
+
+* fixed variable name related warning and removed Net7.0 from target frameworks ([31cc912](https://github.com/Udara-de-Silva/Shorpy/commit/31cc91283eb5755e9324a6eee0af69b5c94591bb))
+
 ## [1.0.1](https://github.com/Udara-de-Silva/Shorpy/compare/v1.0.0...v1.0.1) (2025-03-17)
 
 
