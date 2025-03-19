@@ -1,8 +1,224 @@
 <html>
-    <head>
-        <title>Shorpy</title>
-    </head>
-    <body>
-        <h1>Shorpy</h1>
-    </body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Shorpy is a powerful and easy-to-use .NET library that provides seamless dynamic Pagination, Searching, and Sorting for applications using Entity Framework Core, ASP.NET Core WebAPI, and written in C#. It aims to simplify data handling and improve performance by offering efficient querying mechanisms.">
+    
+  <meta name="keywords" content="HTML, CSS, JavaScript">
+  <title>Shorpy - For Dynamic Pagination, Searching and Sorting</title>
+    <!-- bootstrap css -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- intro-->
+      <div class="p-5">
+        <h1 class="display-2">
+          Welcome to <span class="fst-italic fw-bold">Shorpy</span>
+        </h1>
+        <p class="lead">
+          Shorpy is a powerful and easy-to-use .NET library that provides
+          seamless <b>dynamic Pagination</b>, <b>Searching</b>, and
+          <b>Sorting</b> for applications using <b>Entity Framework Core</b>,
+          <b>ASP.NET Core WebAPI</b>, and written in C#. It aims to simplify
+          data handling and improve performance by offering efficient querying
+          mechanisms.
+        </p>
+        <div>
+          <a
+            class="icon-link"
+            href="https://github.com/Udara-de-Silva/Shorpy"
+            target="_blank"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-github"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8"
+              />
+            </svg>
+            GitHub Repository
+          </a>
+          <a
+            class="icon-link ms-3"
+            href="https://www.nuget.org/packages/Shorpy"
+            target="_blank"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              fill="currentColor"
+              class="bi bi-box2-heart-fill"
+              viewBox="0 0 16 16"
+            >
+              <path
+                d="M3.75 0a1 1 0 0 0-.8.4L.1 4.2a.5.5 0 0 0-.1.3V15a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V4.5a.5.5 0 0 0-.1-.3L13.05.4a1 1 0 0 0-.8-.4zM8.5 4h6l.5.667V5H1v-.333L1.5 4h6V1h1zM8 7.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"
+              />
+            </svg>
+            Nuget Package
+          </a>
+        </div>
+      </div>
+      <!-- installation -->
+      <div class="p-5 pt-0 fs-5">
+        <h2 class="display-4">Installation</h2>
+        <p>Install via NuGet Package Manager:</p>
+        <div class="bg-secondary-subtle p-3">
+          <code> Install-Package Shorpy </code>
+        </div>
+        <p class="mt-3">Or via .NET CLI:</p>
+        <div class="bg-secondary-subtle p-3">
+          <code> dotnet add package Shorpy </code>
+        </div>
+      </div>
+
+      <!-- getting started -->
+      <div class="p-5 pt-0 fs-5">
+          <h2 class="display-4">Getting Started</h2>
+          <p>All you need to get-started are two configuration files; per each Entity you wish to bind with Shorpy's wonderful functionality.</p>
+          <ol>
+            <li><code>SnSAble</code> configuration file</li>
+            <ul>
+                <li>An <code>SnSAble</code> is a class that defines how to access all <b>Searchable</b> and <b>Sortable</b> properties of an Entity</li>
+                <li>An <code>SnSAble</code> implements <code>ISnSAble</code> interface</li>
+            </ul>
+            <p class="mt-2"> Imagine you have two Entities called <code>Employee</code> & <code>Department</code></p>
+            <div>
+                <code class="bg-secondary-subtle p-3" style="display:block; white-space:pre-wrap">
+public class Employee
+{
+    public int Id {get;set;}
+    public string Name {get;set;} = null!;
+    public string Address {get;set;} = null!;
+    public bool IsActive {get;set;}
+    public int Department {get;set;}
+
+    public virtual Department DepartmentNavigation {get;set;}
+}
+
+public class Department
+{
+    public int Id {get;set;}
+    public string Name {get;set;} = null!;
+
+    public virtual List&lt;Employee&gt; Employees {get;set;} = new();
+}
+                </code>
+            </div>
+            <p class="mt-2">Now, if you only want to allow the users to search or sort by, let's say the <code>Name</code>, <code>IsActive</code> properties & the <code>Department.Name</code> property of an <code>Employee</code>, your <code>SnSable</code> for the <code>Employee</code> will look something like the following;</p>
+            <code class="bg-secondary-subtle p-3" style="display:block; white-space:pre-wrap">
+// define the type as a reusable to improve readability; the type has to be a MemberAccess Expression. This is how we tell Shorpy, how to map search fields to real entity properties
+
+using type = Expression&lt;Func&lt;Employee, object&gt;&gt;;
+public class SnSEmployee: ISnSAble
+{
+    public static readonly type Name = e=&gt;e.Name;
+    public static readonly type IsActive = e=&gt;e.IsActive;
+    public static readonly type DepartmentName = e=&gt;e.DepartmentNavigation.Name;
+}
+            </code>
+
+            <li class="mt-2"><code>Includeable</code> configuration file</li>
+            <ul>
+                <li>An <code>Includeable</code> is a class that defines how to access all <b>Navigation</b> properties or <b>Related</b> items of an Entity </li>
+                <li>An <code>Includeable</code> implements <code>IIncludeable</code> interface</li>
+            </ul>
+            <p class="mt-2">For the above <code>Employee</code> entity, the <code>Includeable</code> will look similar to the following</p>
+            <code class="bg-secondary-subtle p-3" style="display:block; white-space:pre-wrap">
+using type = Expression&lt;Func&lt;Employee, object&gt;&gt;;
+public class IncEmployee: IIncludable
+{
+    public static readonly type Department= e=&gt;e.DepartmentNavigation;
+}
+            </code>
+          </ol>
+          <p>That's it! You are good to go. All you have to do now is handle the pagination request</p>
+          <p>Assuming you are handling the pagination request from a controller; your controller will look similar to the following;</p>
+          
+          <code class="bg-secondary-subtle p-3" style="display:block; white-space:pre-wrap">
+using Shorpy.DTOs;
+using Shorpy.Paginate;
+.....
+[HttpPost]
+public virtual async Task&lt;IActionResult&gt; Paginate(PaginateModel pm)
+{
+    // you must pass your DBContext to the paginate function
+    var paginatedObj = await Paginate&lt;Employee, SnSEmployee, IncEmployee&gt;.PaginateWithTracking(_dbcontext, pm);
+
+    return Ok(paginatedObj);
+}
+          </code>
+
+          <p class="mt-2"> Two important things to note here;</p>
+          <ol>
+            <li><code>PaginateModel</code> is a DTO coming from the <code>Shorpy</code> package.</li>
+            <li>You must pass your <code>DBContext</code> to <code>Shorpy</code></li>
+          </ol>
+        </div>
+
+        <div class="p-5 pt-0 fs-5">
+            <h2 class="display-4">Example</h2>
+            <p>Below is an example of a request to paginate and search for all <code>Employees</code> whose name includes "Tim" and include the <code>Department</code> navigation</p>
+          <code class="bg-secondary-subtle p-3" style="display:block; white-space:pre-wrap">
+curl -X POST /api/employees/paginate \
+-H "Content-Type: application/json" \
+-d '{
+    "search": [
+        {
+            "field": "name",
+            "value": "Tim",
+            "method": "like",
+        }
+    ],
+    "include": ['Department'],
+    "limit": 10,
+    "offset":0
+}'
+          </code>
+
+          <p class="mt-3">The above request will give the following response</p>
+          <code class="bg-secondary-subtle p-3" style="display:block; white-space:pre-wrap">
+{
+    "values": [
+        {
+        "id": 1,
+        "name": "Timothée Bing",
+        "address": "xxx xxx xxxx",
+        "isActive": 1,
+        "departmentNavigation": 
+            {
+                "id": 2,
+                "name": "HR"
+            }
+        }
+    ],
+    "total": 1
+}
+          </code>
+        </div>
+      </div>
+
+      <div class="text-center mb-5">
+        <h1 class="display-1">Hope you enjoy using Shorpy</h1>
+        <p class="lead">If you "Star" the GitHub Repository, you will get notified of new updates and patches.</p>
+      </div>
+
+    <!-- bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
