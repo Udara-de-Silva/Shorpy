@@ -29,5 +29,10 @@ jobs:
       - name: Pack Nuget
         run: dotnet pack
 
+      - name: Install dependencies
+        run: npm ci
+
       - name: Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
