@@ -19,22 +19,36 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
 
-      - name: Restore dependencies 
+      - name: Restore dependencies
         run: dotnet restore
 
-      - name: Build the solution 
+      - name: Build the solution
         run: dotnet build --no-restore --configuration Release
 
-      - name: Run tests 
+      - name: Run tests
         run: dotnet test --no-build --configuration Release
-
-      - name: Pack Nuget
-        run: dotnet pack
 
       - name: Install dependencies
         run: npm install @semantic-release/changelog -D
 
       - name: Semantic Release
+        id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: npx semantic-release
+        run: |
+          npx semantic-release | tee version.txt
+          echo "VERSION=$(cat version.txt | grep -oP '(?<=Published version ).*')" >> $GITHUB_ENV
+
+      - name: Pack Nuget
+        run: dotnet pack -c Release -p:Version=$VERSION -o ./artifacts
+
+      - name: Upload NuGet Package to Release
+        if: success() && env.VERSION != ''
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.release.outputs.upload_url }}
+          asset_path: ./artifacts/*.nupkg
+          asset_name: MyProject.${{ env.VERSION }}.nupkg
+          asset_content_type: application/zip
