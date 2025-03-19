@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3"
+  }
+}
