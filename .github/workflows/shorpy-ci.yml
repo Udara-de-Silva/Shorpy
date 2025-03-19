@@ -40,7 +40,8 @@ jobs:
           echo "VERSION=$(cat version.txt | grep -oP '(?<=Published version ).*')" >> $GITHUB_ENV
 
       - name: Pack Nuget
-        run: dotnet pack -c Release -p:Version=$VERSION -o ./artifacts
+        if: success() && env.VERSION != ''
+        run: dotnet pack -c Release -p:Version=env.VERSION -o ./artifacts
 
       - name: Upload NuGet Package to Release
         if: success() && env.VERSION != ''
