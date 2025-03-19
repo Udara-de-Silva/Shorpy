@@ -30,7 +30,7 @@ jobs:
         run: dotnet pack
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install @semantic-release/changelog -D
 
       - name: Semantic Release
         env:
