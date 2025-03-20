@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    outputs:
+      next_version: ${{ steps.pack_nuget.outputs.next_version }}
 
     steps:
       - name: Checkout code
@@ -37,15 +39,20 @@ jobs:
         id: release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # npx semantic-release sets the env variable NEXT_SHORPY_VERSION when a new version is released
         run: |
-          npx semantic-release
+          npx semantic-release 
+      
+      - name: Set Next Version
+        id: set_next_version
+        run: echo "{next_version}={env.NEXT_SHORPY_VERSION}" >> $GITHUB_OUTPUT
 
       - name: Pack Nuget
-        if: success() && env.NEXT_SHORPY_VERSION != ''
-        run: dotnet pack -c Release -p:Version=$NEXT_SHORPY_VERSION -o ./artifacts
+        if: success() && ${{ steps.set_next_version.outputs.next_version != '' }}
+        run: dotnet pack -c Release -p:Version=${{ steps.set_next_version.outputs.next_version }} -o ./artifacts
       
       - name: Extract tag of the latest release
-        if: success() && env.NEXT_SHORPY_VERSION != ''
+        if: success() && ${{ steps.set_next_version.outputs.next_version != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -53,8 +60,8 @@ jobs:
           echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
 
       - name: Upload NuGet Package to Release
-        if: success() && env.NEXT_SHORPY_VERSION != ''
+        if: success() && ${{ steps.set_next_version.outputs.next_version != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release upload $RELEASE_TAG ./artifacts/Shorpy.${{ env.NEXT_SHORPY_VERSION }}.nupkg
+          gh release upload $RELEASE_TAG ./artifacts/Shorpy.${{ steps.set_next_version.outputs.next_version }}.nupkg
