@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: write
     outputs:
-      next_version: ${{ steps.pack_nuget.outputs.next_version }}
+      next_version: ${{ steps.set_next_version.outputs.next_version }}
 
     steps:
       - name: Checkout code
