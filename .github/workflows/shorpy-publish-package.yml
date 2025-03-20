@@ -24,9 +24,9 @@ jobs:
 
       - name: Push to GitHub Packages
         run: |
-         dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "https://nuget.pkg.github.com/Udara-de-Silva/index.json"
+         dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --skip-duplicate  --source "https://nuget.pkg.github.com/Udara-de-Silva/index.json"
 
       - name: Push to Nuget Packages
         run: |
-         dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }}  --source "https://api.nuget.org/v3/index.json"
+         dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --skip-duplicate --source "https://api.nuget.org/v3/index.json"
 
