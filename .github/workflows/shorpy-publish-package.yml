@@ -2,6 +2,9 @@ name: SHORPY PUBLISH PACKAGE
 
 on:
   workflow_call:
+    secrets:
+        NUGET_API_KEY:
+          required: true
 
 jobs:
   publish:
