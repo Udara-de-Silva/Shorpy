@@ -67,5 +67,6 @@ jobs:
           gh release upload $RELEASE_TAG ./artifacts/Shorpy.${{ steps.set_next_version.outputs.next_version }}.nupkg
 
   publish_packages_to_repos:
-        if: ${{ success() && steps.set_next_version.outputs.next_version != '' }}
+        needs: build_test_release
+        if: ${{ success() && needs.build_test_release.outputs.next_version != '' }}
         uses: ./.github/workflows/shorpy-publish-package.yml
