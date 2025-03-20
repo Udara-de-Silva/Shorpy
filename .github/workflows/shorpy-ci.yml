@@ -29,7 +29,9 @@ jobs:
         run: dotnet test --no-build --configuration Release
 
       - name: Install dependencies
-        run: npm install @semantic-release/changelog -D
+        run: |
+         npm install @semantic-release/changelog -D
+         npm install @semantic-release/exec -D
 
       - name: Semantic Release
         id: release
