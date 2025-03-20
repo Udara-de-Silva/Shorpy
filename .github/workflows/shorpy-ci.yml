@@ -38,7 +38,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          npx semantic-release --dry-run
+          npx semantic-release
 
       - name: Pack Nuget
         if: success() && env.NEXT_SHORPY_VERSION != ''
