@@ -43,15 +43,9 @@ jobs:
       - name: Pack Nuget
         if: success() && env.NEXT_SHORPY_VERSION != ''
         run: dotnet pack -c Release -p:Version=$NEXT_SHORPY_VERSION -o ./artifacts
-
-      - name: Extract upload URL
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          UPLOAD_URL=$(gh release view --json uploadUrl -q '.uploadUrl')
-          echo "UPLOAD_URL=$UPLOAD_URL" >> $GITHUB_ENV
       
       - name: Extract tag of the latest release
+        if: success() && env.NEXT_SHORPY_VERSION != ''
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -59,6 +53,7 @@ jobs:
           echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
 
       - name: Upload NuGet Package to Release
+        if: success() && env.NEXT_SHORPY_VERSION != ''
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
