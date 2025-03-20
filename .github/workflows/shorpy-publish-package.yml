@@ -1,0 +1,25 @@
+name: SHORPY PUBLISH PACKAGE
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [SHORPY CI]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download Artifact
+        run: gh release download --pattern '*.nupkg' -D './package'
+
+      - name: Authenticate with GitHub Packages
+        # env:
+        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+         dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --name github "https://nuget.pkg.github.com/Udara-de-Silva/index.json"
+         dotnet nuget push ./package/*.nupkg --source "github"
