@@ -68,5 +68,7 @@ jobs:
 
   publish_packages_to_repos:
         needs: build_test_release
+        permissions:
+          packages: write
         if: ${{ success() && needs.build_test_release.outputs.next_version != '' }}
         uses: ./.github/workflows/shorpy-publish-package.yml
