@@ -48,11 +48,11 @@ jobs:
         run: echo "next_version=${{ env.NEXT_SHORPY_VERSION }}" >> $GITHUB_OUTPUT
 
       - name: Pack Nuget
-        if: success() && ${{ steps.set_next_version.outputs.next_version != '' }}
+        if: ${{ success() && steps.set_next_version.outputs.next_version != '' }}
         run: dotnet pack -c Release -p:Version=${{ steps.set_next_version.outputs.next_version }} -o ./artifacts
       
       - name: Extract tag of the latest release
-        if: success() && ${{ steps.set_next_version.outputs.next_version != '' }}
+        if: ${{ success() && steps.set_next_version.outputs.next_version != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -60,7 +60,7 @@ jobs:
           echo "RELEASE_TAG=$RELEASE_TAG" >> $GITHUB_ENV
 
       - name: Upload NuGet Package to Release
-        if: success() && ${{ steps.set_next_version.outputs.next_version != '' }}
+        if: ${{ success() && steps.set_next_version.outputs.next_version != '' }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
