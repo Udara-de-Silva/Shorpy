@@ -52,6 +52,9 @@ jobs:
           UPLOAD_URL=$(gh release view --json uploadUrl -q '.uploadUrl')
           echo "UPLOAD_URL=$UPLOAD_URL" >> $GITHUB_ENV
 
+      - name: Debug directory
+        run: pwd
+
       - name: Upload NuGet Package to Release
         if: success() && env.NEXT_SHORPY_VERSION != ''
         uses: actions/upload-release-asset@v1
