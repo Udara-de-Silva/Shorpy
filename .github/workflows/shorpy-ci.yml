@@ -42,7 +42,7 @@ jobs:
 
       - name: Pack Nuget
         if: success() && env.NEXT_SHORPY_VERSION != ''
-        run: echo $NEXT_SHORPY_VERSION | dotnet pack -c Release -p:Version=$NEXT_SHORPY_VERSION -o ./artifacts
+        run: dotnet pack -c Release -p:Version=$NEXT_SHORPY_VERSION -o ./artifacts
 
       - name: Extract upload URL
         id: upload_url
