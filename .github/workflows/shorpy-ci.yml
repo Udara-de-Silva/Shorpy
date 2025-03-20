@@ -46,6 +46,8 @@ jobs:
 
       - name: Extract upload URL
         id: upload_url
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           UPLOAD_URL=$(gh release view --json uploadUrl -q '.uploadUrl')
           echo "UPLOAD_URL=$UPLOAD_URL" >> $GITHUB_ENV
