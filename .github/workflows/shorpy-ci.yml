@@ -45,7 +45,7 @@ jobs:
       
       - name: Set Next Version
         id: set_next_version
-        run: echo "next_version=env.NEXT_SHORPY_VERSION" >> $GITHUB_OUTPUT
+        run: echo "next_version=${{ env.NEXT_SHORPY_VERSION }}" >> $GITHUB_OUTPUT
 
       - name: Pack Nuget
         if: success() && ${{ steps.set_next_version.outputs.next_version != '' }}
