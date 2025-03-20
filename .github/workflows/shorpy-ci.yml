@@ -44,13 +44,19 @@ jobs:
         if: success() && env.NEXT_SHORPY_VERSION != ''
         run: echo $NEXT_SHORPY_VERSION | dotnet pack -c Release -p:Version=$NEXT_SHORPY_VERSION -o ./artifacts
 
+      - name: Extract upload URL
+        id: upload_url
+        run: |
+          UPLOAD_URL=$(gh release view --json uploadUrl -q '.uploadUrl')
+          echo "UPLOAD_URL=$UPLOAD_URL" >> $GITHUB_ENV
+
       - name: Upload NuGet Package to Release
         if: success() && env.NEXT_SHORPY_VERSION != ''
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          upload_url: ${{ steps.release.outputs.upload_url }}
+          upload_url: ${{ env.UPLOAD_URL }}
           asset_path: ./artifacts/*.nupkg
           asset_name: Shorpy.${{ env.NEXT_SHORPY_VERSION }}.nupkg
           asset_content_type: application/zip
