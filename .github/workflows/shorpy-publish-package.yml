@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      packages: write
 
     steps:
       - name: Checkout Repository
@@ -23,8 +23,5 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Authenticate with GitHub Packages
-        # env:
-        #   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-         dotnet nuget add source --username USERNAME --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Udara-de-Silva/index.json"
-         dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "github"
+         dotnet nuget push ./package/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }}  --source "https://nuget.pkg.github.com/Udara-de-Silva/index.json"
