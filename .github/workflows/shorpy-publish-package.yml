@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Download Artifact
         run: gh release download --pattern '*.nupkg' -D './package'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Authenticate with GitHub Packages
         # env:
