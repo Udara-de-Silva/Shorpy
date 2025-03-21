@@ -3,6 +3,7 @@ File-Name: SearchPredicateBuilder
 File-Description: builds the search predicate based on the search entities
 Author: Udara de Silva <udara@thesoftwarefirm.lk>
 Created-On: 2025-03-16
+Updated-On: 2025-03-21 udara@thesoftwarefirm.lk => added support for gte and lte Search Methods
 Version: 1.0
 */
 using System.ComponentModel;
@@ -166,6 +167,12 @@ public class SearchPredicateBuilder<TEntity>
           break;
         case SearchMethods.lt:
           exp = Expression.LessThan(ME, cons1);
+          break;
+        case SearchMethods.lte:
+          exp = Expression.LessThanOrEqual(ME, cons1);
+          break;
+        case SearchMethods.gte:
+          exp = Expression.GreaterThanOrEqual(ME, cons1);
           break;
         case SearchMethods.like:
           exp = Expression.Call(ME, "Contains", null, cons1);

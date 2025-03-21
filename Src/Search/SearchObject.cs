@@ -2,7 +2,8 @@
 File-Name: SearchObject
 File-Description: contains classes and enums which represent search criteria
 Author: Udara de Silva <udara@thesoftwarefirm.lk>
-Created-On: 2025-03-16
+Created-On: 2025-03-16,
+Updated-On: 2025-03-21 udara@thesoftwarefirm.lk => added gte and lte Search Methods
 Version: 1.0
 */
 using System.Linq.Expressions;
@@ -19,6 +20,8 @@ public enum SearchMethods
   equal,
   gt,
   lt,
+  gte,
+  lte,
   notequal,
   like,
   wherein,

@@ -157,4 +157,31 @@ public class TestSearch
         else
             Assert.Fail("Returned empty result set");
     }
+
+    [Test]
+    public async Task Paginate_WhenSearchMethodIsGTE_ReturnsPaginatedObject()
+    {
+        var searchString = 4800;
+        var paginated = await Paginate<Employee, SnSEmployee, IncEmployee>.PaginateWithTracking(_context, new PaginateModel()
+        {
+            Search = new List<SearchModel>(){
+                new(){
+                    method = "gte",
+                    value = searchString.ToString(),
+                    field = "salary"
+                }
+            }
+        });
+        // loop through all returned results
+        if (paginated.Values is not null && paginated.Values.Count() > 0)
+        {
+            foreach (var employee in paginated.Values)
+            {
+                if (employee.Salary < searchString) Assert.Fail("Incorrect search result");
+            }
+            Assert.Pass();
+        }
+        else
+            Assert.Fail("Returned empty result set");
+    }
 }

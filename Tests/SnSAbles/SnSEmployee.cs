@@ -8,4 +8,5 @@ using incType = Expression<Func<Employee, object>>;
 public class SnSEmployee: ISnSAble
 {
     public static readonly incType Name = e=>e.Name;
+    public static readonly incType Salary = e=>e.Salary;
 }
